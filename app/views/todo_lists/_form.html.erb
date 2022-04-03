@@ -1,0 +1,24 @@
+<h1><%= action_name %> <%= TodoList.model_name.human %></h1>
+
+<% if params[:errors]&.any? %>
+  <ul>
+    <% params[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: todo_list, local: true, method: method, data: { turbo: false } do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title, value: params[:title] || todo_list.title %>
+  </div>
+  <div>
+    <%= f.label :routine %>
+    <%= f.select :routine, TodoList.routines.keys, selected: params[:routine] || todo_list.routine %>
+  </div>
+  <%= f.submit submit_text %>
+<% end %>
+
+<div><%= link_to 'Back to Todo lists', todo_lists_path %></div>
+<div><%= link_to 'Back to index', root_path %></div>
