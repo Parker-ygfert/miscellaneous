@@ -1,0 +1,15 @@
+<h1><%= TodoList.model_name.human %></h1>
+
+<%= link_to 'Create', new_todo_list_path %>
+
+<ul>
+  <% @todo_lists.each do |todo_list| %>
+    <li>
+      <%= todo_list.title %> #<%= todo_list.routine %><br>
+      <%= link_to :edit, edit_todo_list_path(todo_list) %>
+      <%= link_to :complete, todo_list_path(todo_list), method: :delete %>
+    </li>
+  <% end %>
+</ul>
+
+<div><%= link_to 'Back to index', root_path %></div>
